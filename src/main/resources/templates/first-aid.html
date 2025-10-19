@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Aid - Smart Health Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">Smart Health Companion</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/health-tracker">Health Tracker</a></li>
+                <li class="nav-item"><a class="nav-link" href="/symptom-checker">Symptom Checker</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/first-aid">First Aid</a></li>
+                <li class="nav-item"><a class="nav-link" href="/nearby-services">Nearby Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="/sos">SOS Emergency</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold mb-4 text-danger">First Aid Guide</h1>
+            <p class="lead mb-5">Essential first aid tips to help you quickly respond to common emergencies.</p>
+        </div>
+    </div>
+    <div class="row gy-4">
+        <!-- Bleeding section -->
+        <div class="col-md-6">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <strong>Severe Bleeding</strong>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Apply firm, direct pressure to the wound using a clean cloth.</li>
+                        <li>If possible, elevate the injured area above heart level.</li>
+                        <li>If bleeding does not stop, seek emergency assistance.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Burns section -->
+        <div class="col-md-6">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <strong>Burns</strong>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Hold the burned area under cool running water for 10-20 minutes.</li>
+                        <li>Do not apply ice or oily substances to the burn.</li>
+                        <li>Cover with a sterile gauze bandage.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Choking section -->
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <strong>Choking</strong>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Ask the person to cough forcefully if they can.</li>
+                        <li>If unable to breathe or speak, perform the Heimlich maneuver.</li>
+                        <li>Call emergency services if the object does not come out.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Fainting section -->
+        <div class="col-md-6">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <strong>Fainting</strong>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Lay the person flat and elevate their legs.</li>
+                        <li>Loosen tight clothing and improve fresh air flow.</li>
+                        <li>Seek medical help if consciousness is not regained quickly.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Add more tips as needed -->
+    </div>
+</main>
+<footer class="bg-dark text-light py-4 mt-5">
+    <div class="container text-center">
+        <p>&copy; 2025 Smart Health Companion. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

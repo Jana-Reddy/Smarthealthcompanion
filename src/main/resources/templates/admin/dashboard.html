@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Health Companion</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-heartbeat me-2"></i>
+                Smart Health Companion
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">Admin Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/users">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/sos-logs">SOS Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/messages">Messages</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-shield me-1"></i>
+                            <span sec:authentication="name">Admin</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/settings">Settings</a></li>
+                            <li><a class="dropdown-item" href="/admin/create-admin">Create Admin</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid py-4">
+        <!-- Alert Messages -->
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${successMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${errorMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="fw-bold">Admin Dashboard</h2>
+                        <p class="text-muted">Welcome back, <span th:text="${admin.name}">Admin</span>!</p>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-muted">Last login: <span th:text="${admin.lastLogin}">Never</span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="fw-bold" th:text="${totalUsers}">0</h4>
+                                <p class="mb-0">Total Users</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-users fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="fw-bold" th:text="${totalSOSLogs}">0</h4>
+                                <p class="mb-0">SOS Logs</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-exclamation-triangle fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="fw-bold" th:text="${pendingSOSLogs}">0</h4>
+                                <p class="mb-0">Pending SOS</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-clock fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="fw-bold" th:text="${unreadMessages}">0</h4>
+                                <p class="mb-0">Unread Messages</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-envelope fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts and Data -->
+        <div class="row">
+            <!-- Recent Users -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-plus me-2"></i>
+                            Recent Users
+                        </h5>
+                        <a href="/admin/users" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${recentUsers != null and !recentUsers.empty}" class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="user : ${recentUsers}">
+                                        <td th:text="${user.name}">Name</td>
+                                        <td th:text="${user.email}">Email</td>
+                                        <td>
+                                            <span class="badge" th:classappend="${user.role.name() == 'ADMIN' ? 'bg-danger' : 'bg-primary'}" th:text="${user.role.name()}">Role</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge" th:classappend="${user.isActive ? 'bg-success' : 'bg-secondary'}" th:text="${user.isActive ? 'Active' : 'Inactive'}">Status</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${recentUsers == null or recentUsers.empty}" class="text-center text-muted py-4">
+                            <i class="fas fa-users fa-3x mb-3"></i>
+                            <p>No recent users</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent SOS Logs -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Recent SOS Logs
+                        </h5>
+                        <a href="/admin/sos-logs" class="btn btn-sm btn-outline-danger">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${recentSOSLogs != null and !recentSOSLogs.empty}" class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="sosLog : ${recentSOSLogs}">
+                                        <td th:text="${sosLog.user.name}">User</td>
+                                        <td th:text="${sosLog.emergencyType}">Type</td>
+                                        <td>
+                                            <span class="badge" th:classappend="${sosLog.status.name() == 'PENDING' ? 'bg-warning' : (sosLog.status.name() == 'RESOLVED' ? 'bg-success' : 'bg-info')}" th:text="${sosLog.status.displayName}">Status</span>
+                                        </td>
+                                        <td th:text="${#temporals.format(sosLog.createdAt, 'MMM dd, HH:mm')}">Time</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${recentSOSLogs == null or recentSOSLogs.empty}" class="text-center text-muted py-4">
+                            <i class="fas fa-shield-alt fa-3x mb-3"></i>
+                            <p>No recent SOS logs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Messages -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-envelope me-2"></i>
+                            Recent Contact Messages
+                        </h5>
+                        <a href="/admin/messages" class="btn btn-sm btn-outline-info">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${recentMessages != null and !recentMessages.empty}" class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
+                                        <th>Status</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="message : ${recentMessages}">
+                                        <td th:text="${message.name}">Name</td>
+                                        <td th:text="${message.email}">Email</td>
+                                        <td th:text="${message.subject}">Subject</td>
+                                        <td>
+                                            <span class="badge" th:classappend="${message.isRead ? 'bg-success' : 'bg-warning'}" th:text="${message.isRead ? 'Read' : 'Unread'}">Status</span>
+                                        </td>
+                                        <td th:text="${#temporals.format(message.sentTime, 'MMM dd, HH:mm')}">Time</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${recentMessages == null or recentMessages.empty}" class="text-center text-muted py-4">
+                            <i class="fas fa-envelope fa-3x mb-3"></i>
+                            <p>No recent messages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h4 class="fw-bold mb-3">Quick Actions</h4>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/users" class="btn btn-outline-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-users fa-2x mb-2"></i>
+                    <span>Manage Users</span>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/sos-logs" class="btn btn-outline-danger w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                    <span>SOS Logs</span>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/messages" class="btn btn-outline-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-envelope fa-2x mb-2"></i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/create-admin" class="btn btn-outline-success w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-user-plus fa-2x mb-2"></i>
+                    <span>Create Admin</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="text-center">
+                <p>&copy; 2024 Smart Health Companion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+</body>
+</html>

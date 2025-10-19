@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Smart Health Companion</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-heartbeat me-2"></i>
+                Smart Health Companion
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/health-tracker">Health Tracker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/symptom-checker">Symptom Checker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/first-aid">First Aid</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/nearby-services">Nearby Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sos">SOS Emergency</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>
+                            <span sec:authentication="name">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dashboard/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/dashboard/change-password">Change Password</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <!-- Alert Messages -->
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${successMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${errorMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="fw-bold">Welcome back, <span th:text="${user.name}">User</span>!</h2>
+                        <p class="text-muted">Here's your health overview</p>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-muted">Last login: <span th:text="${user.lastLogin}">Never</span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h4 class="mb-3">Quick Actions</h4>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <a href="/symptom-checker" class="btn btn-outline-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-stethoscope fa-2x mb-2"></i>
+                    <span>Symptom Checker</span>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/health-tracker/add" class="btn btn-outline-success w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-plus-circle fa-2x mb-2"></i>
+                    <span>Add Health Record</span>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/nearby-services" class="btn btn-outline-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+                    <span>Find Services</span>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/sos" class="btn btn-outline-danger w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                    <span>SOS Emergency</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="row">
+            <!-- Recent Health Records -->
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Recent Health Records
+                        </h5>
+                        <a href="/health-tracker" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${recentHealthRecords != null and !recentHealthRecords.empty}" class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Value</th>
+                                        <th>Date</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="record : ${recentHealthRecords}">
+                                        <td>
+                                            <span class="badge bg-primary" th:text="${record.type.displayName}">Type</span>
+                                        </td>
+                                        <td th:text="${record.value}">Value</td>
+                                        <td th:text="${#temporals.format(record.recordDate, 'MMM dd, yyyy')}">Date</td>
+                                        <td th:text="${record.notes != null ? record.notes : '-'}">Notes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${recentHealthRecords == null or recentHealthRecords.empty}" class="text-center text-muted py-4">
+                            <i class="fas fa-chart-line fa-3x mb-3"></i>
+                            <p>No health records yet. <a href="/health-tracker/add">Add your first record</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            Upcoming Appointments
+                        </h5>
+                        <a href="/health-tracker" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${upcomingAppointments != null and !upcomingAppointments.empty}">
+                            <div th:each="appointment : ${upcomingAppointments}" class="border-bottom pb-2 mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <strong th:text="${appointment.value}">Appointment</strong>
+                                    <small class="text-muted" th:text="${#temporals.format(appointment.recordDate, 'MMM dd')}">Date</small>
+                                </div>
+                                <small class="text-muted" th:text="${appointment.notes != null ? appointment.notes : 'No notes'}">Notes</small>
+                            </div>
+                        </div>
+                        <div th:if="${upcomingAppointments == null or upcomingAppointments.empty}" class="text-center text-muted py-4">
+                            <i class="fas fa-calendar-alt fa-3x mb-3"></i>
+                            <p>No upcoming appointments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent SOS Logs -->
+                <div class="card mt-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Recent SOS Logs
+                        </h5>
+                        <a href="/sos/logs" class="btn btn-sm btn-outline-danger">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${recentSOSLogs != null and !recentSOSLogs.empty}">
+                            <div th:each="sosLog : ${recentSOSLogs}" class="border-bottom pb-2 mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <strong th:text="${sosLog.emergencyType}">Emergency</strong>
+                                    <span class="badge" th:classappend="${sosLog.status.name() == 'PENDING' ? 'bg-warning' : (sosLog.status.name() == 'RESOLVED' ? 'bg-success' : 'bg-info')}" th:text="${sosLog.status.displayName}">Status</span>
+                                </div>
+                                <small class="text-muted" th:text="${sosLog.location}">Location</small>
+                                <br>
+                                <small class="text-muted" th:text="${#temporals.format(sosLog.createdAt, 'MMM dd, HH:mm')}">Time</small>
+                            </div>
+                        </div>
+                        <div th:if="${recentSOSLogs == null or recentSOSLogs.empty}" class="text-center text-muted py-4">
+                            <i class="fas fa-shield-alt fa-3x mb-3"></i>
+                            <p>No recent SOS logs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="text-center">
+                <p>&copy; 2025 Smart Health Companion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+</body>
+</html>

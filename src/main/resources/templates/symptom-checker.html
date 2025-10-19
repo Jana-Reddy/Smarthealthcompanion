@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker - Smart Health Companion</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-heartbeat me-2"></i>
+                Smart Health Companion
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/health-tracker">Health Tracker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/symptom-checker">Symptom Checker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/first-aid">First Aid</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/nearby-services">Nearby Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sos">SOS Emergency</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>
+                            <span sec:authentication="name">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dashboard/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/dashboard/change-password">Change Password</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Alert Messages -->
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            <span th:text="${successMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${errorMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Symptom Checker Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold text-gradient mb-3">
+                    <i class="fas fa-stethoscope me-3"></i>
+                    Symptom Checker
+                </h1>
+                <p class="lead">Select your symptoms to get AI-powered health recommendations and guidance.</p>
+            </div>
+        </div>
+
+        <!-- Symptom Selection -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <h3 class="fw-bold mb-4">
+                            <i class="fas fa-list-check me-2"></i>
+                            Select Your Symptoms
+                        </h3>
+                        
+                        <form th:action="@{/symptom-checker/check}" method="post" id="symptomForm">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Available Symptoms:</label>
+                                <div class="symptom-container row g-2" id="symptomContainer">
+                                    <!-- Symptoms will be loaded dynamically -->
+                                </div>
+                            </div>
+
+                            <div class="mb-4" id="selectedSymptomsDisplay">
+                                <!-- Selected symptoms will be displayed here -->
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" id="checkSymptomsBtn" disabled>
+                                    <i class="fas fa-search me-2"></i>Check Symptoms
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="mt-4">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Important:</strong> This symptom checker is for informational purposes only and should not replace professional medical advice. Always consult with a healthcare provider for proper diagnosis and treatment.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h4 class="fw-bold mb-3">Quick Access</h4>
+            </div>
+            <div class="col-md-4">
+                <a href="/first-aid" class="btn btn-outline-success w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-first-aid fa-2x mb-2"></i>
+                    <span>First Aid Guide</span>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/nearby-services" class="btn btn-outline-info w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+                    <span>Find Hospitals</span>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/sos" class="btn btn-outline-danger w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                    <span>SOS Emergency</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="text-center">
+                <p>&copy; 2024 Smart Health Companion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/main.js"></script>
+    
+    <script>
+        // Initialize symptom checker
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSymptomChecker();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+[
+  {
+    "type": "CPR",
+    "steps": [
+      "Check for responsiveness - tap shoulders and shout",
+      "Call 911 or ask someone to call",
+      "Check for breathing - look, listen, feel for 10 seconds",
+      "If not breathing, start chest compressions",
+      "Place heel of one hand on center of chest",
+      "Place other hand on top, interlock fingers",
+      "Push hard and fast - 2 inches deep, 100-120 compressions per minute",
+      "Allow chest to fully recoil between compressions",
+      "Continue until help arrives or person shows signs of life"
+    ],
+    "warnings": [
+      "Only perform CPR if person is unresponsive and not breathing",
+      "Do not perform CPR on someone who is breathing normally",
+      "If you're not trained, perform hands-only CPR (chest compressions only)",
+      "Stop if person shows signs of life or help arrives"
+    ],
+    "whenToSeekHelp": [
+      "Call 911 immediately",
+      "Continue CPR until emergency services arrive",
+      "If AED is available, use it as soon as possible"
+    ]
+  },
+  {
+    "type": "Burns",
+    "steps": [
+      "Remove person from source of burn",
+      "Cool the burn with cool running water for 10-15 minutes",
+      "Remove jewelry or clothing near burn (unless stuck to skin)",
+      "Cover burn with sterile, non-stick bandage",
+      "Do not use ice, butter, or ointments",
+      "Elevate burned area if possible",
+      "Monitor for signs of shock"
+    ],
+    "warnings": [
+      "Do not break blisters",
+      "Do not remove clothing stuck to skin",
+      "Do not use ice or very cold water",
+      "Seek immediate medical attention for severe burns"
+    ],
+    "whenToSeekHelp": [
+      "Burns larger than palm of hand",
+      "Burns on face, hands, feet, or genitals",
+      "Third-degree burns (white, charred, or leathery skin)",
+      "Burns caused by chemicals or electricity",
+      "Signs of infection (redness, swelling, pus)"
+    ]
+  },
+  {
+    "type": "Bleeding",
+    "steps": [
+      "Apply direct pressure to wound with clean cloth or bandage",
+      "Elevate injured area above heart level",
+      "Maintain pressure for at least 10 minutes",
+      "If bleeding continues, apply additional dressings",
+      "Do not remove original dressing",
+      "If bleeding is severe, apply pressure to pressure points",
+      "Monitor for signs of shock"
+    ],
+    "warnings": [
+      "Do not remove objects embedded in wound",
+      "Do not use tourniquet unless trained",
+      "Do not remove dressings once applied",
+      "Seek immediate medical attention for severe bleeding"
+    ],
+    "whenToSeekHelp": [
+      "Bleeding doesn't stop after 10 minutes of direct pressure",
+      "Blood is spurting or flowing heavily",
+      "Wound is deep or large",
+      "Foreign object is embedded in wound",
+      "Signs of shock (pale skin, rapid pulse, confusion)"
+    ]
+  },
+  {
+    "type": "Choking",
+    "steps": [
+      "Ask 'Are you choking?' - if person can speak, encourage coughing",
+      "If person cannot speak, perform Heimlich maneuver",
+      "Stand behind person, wrap arms around waist",
+      "Make fist with one hand, place thumb side against abdomen above navel",
+      "Grasp fist with other hand, give quick upward thrusts",
+      "Continue until object is expelled or person becomes unconscious",
+      "If person becomes unconscious, start CPR"
+    ],
+    "warnings": [
+      "Do not perform Heimlich on conscious person who can speak",
+      "Do not slap person on back while choking",
+      "Do not put fingers in person's mouth unless you can see object",
+      "Seek immediate medical attention if choking persists"
+    ],
+    "whenToSeekHelp": [
+      "Person becomes unconscious",
+      "Choking continues after Heimlich maneuver",
+      "Person shows signs of severe distress",
+      "Call 911 if choking is severe"
+    ]
+  },
+  {
+    "type": "Heart Attack",
+    "steps": [
+      "Call 911 immediately",
+      "Have person sit down and rest",
+      "Loosen tight clothing",
+      "If person has prescribed nitroglycerin, help them take it",
+      "If person is conscious and not allergic, give aspirin to chew",
+      "Monitor breathing and pulse",
+      "Be prepared to perform CPR if person becomes unconscious"
+    ],
+    "warnings": [
+      "Do not delay calling 911",
+      "Do not drive person to hospital yourself",
+      "Do not give medications unless prescribed",
+      "This is a medical emergency requiring immediate attention"
+    ],
+    "whenToSeekHelp": [
+      "Call 911 immediately",
+      "Any chest pain or pressure",
+      "Shortness of breath",
+      "Pain in arm, jaw, or back",
+      "Nausea, sweating, or dizziness"
+    ]
+  },
+  {
+    "type": "Stroke",
+    "steps": [
+      "Call 911 immediately",
+      "Note time when symptoms started",
+      "Have person lie down on side if conscious",
+      "Keep person calm and comfortable",
+      "Do not give food or drink",
+      "Monitor breathing and pulse",
+      "Be prepared to perform CPR if needed"
+    ],
+    "warnings": [
+      "Do not delay calling 911",
+      "Time is critical for stroke treatment",
+      "Do not give aspirin unless directed by medical personnel",
+      "This is a medical emergency requiring immediate attention"
+    ],
+    "whenToSeekHelp": [
+      "Call 911 immediately",
+      "Sudden numbness or weakness",
+      "Confusion or trouble speaking",
+      "Vision problems",
+      "Severe headache",
+      "Loss of balance or coordination"
+    ]
+  },
+  {
+    "type": "Seizure",
+    "steps": [
+      "Stay calm and time the seizure",
+      "Move person away from dangerous objects",
+      "Place person on side to prevent choking",
+      "Do not put anything in person's mouth",
+      "Do not restrain person's movements",
+      "Loosen tight clothing around neck",
+      "Stay with person until seizure ends"
+    ],
+    "warnings": [
+      "Do not put fingers or objects in person's mouth",
+      "Do not try to stop the seizure",
+      "Do not give water or food during seizure",
+      "Seek medical attention for first-time seizures"
+    ],
+    "whenToSeekHelp": [
+      "Seizure lasts more than 5 minutes",
+      "Multiple seizures without regaining consciousness",
+      "Person is injured during seizure",
+      "Seizure occurs in water",
+      "Person has difficulty breathing after seizure"
+    ]
+  },
+  {
+    "type": "Heat Exhaustion",
+    "steps": [
+      "Move person to cool, shaded area",
+      "Remove excess clothing",
+      "Apply cool, wet cloths to skin",
+      "Fan person or move to air-conditioned area",
+      "Give cool water to drink (if conscious)",
+      "Elevate legs if possible",
+      "Monitor for signs of heat stroke"
+    ],
+    "warnings": [
+      "Do not give alcohol or caffeine",
+      "Do not use ice water or ice packs",
+      "Do not leave person alone",
+      "Seek medical attention if symptoms worsen"
+    ],
+    "whenToSeekHelp": [
+      "Symptoms worsen or don't improve",
+      "Person becomes unconscious",
+      "Signs of heat stroke (high body temperature, confusion)",
+      "Vomiting or inability to drink fluids"
+    ]
+  },
+  {
+    "type": "Hypothermia",
+    "steps": [
+      "Move person to warm, dry area",
+      "Remove wet clothing",
+      "Wrap person in blankets or warm clothing",
+      "Give warm, non-alcoholic beverages if conscious",
+      "Apply warm compresses to chest, neck, and groin",
+      "Monitor breathing and pulse",
+      "Do not rub or massage person's skin"
+    ],
+    "warnings": [
+      "Do not use hot water or heating pads",
+      "Do not give alcohol",
+      "Do not rub person's skin",
+      "Handle person gently to avoid cardiac arrest"
+    ],
+    "whenToSeekHelp": [
+      "Person is unconscious",
+      "Signs of severe hypothermia",
+      "Person cannot be warmed up",
+      "Call 911 for severe cases"
+    ]
+  },
+  {
+    "type": "Poisoning",
+    "steps": [
+      "Call Poison Control Center (1-800-222-1222) or 911",
+      "Do not induce vomiting unless directed",
+      "If person is unconscious, check breathing and pulse",
+      "If person is conscious, try to identify poison",
+      "Keep person calm and comfortable",
+      "Do not give food or drink unless directed",
+      "Save any containers or labels"
+    ],
+    "warnings": [
+      "Do not induce vomiting unless directed by poison control",
+      "Do not give milk or water unless directed",
+      "Do not try to neutralize poison",
+      "Seek immediate medical attention"
+    ],
+    "whenToSeekHelp": [
+      "Call Poison Control Center immediately",
+      "Person is unconscious or having seizures",
+      "Difficulty breathing",
+      "Severe symptoms develop"
+    ]
+  },
+  {
+    "type": "Sprains and Strains",
+    "steps": [
+      "Rest the injured area",
+      "Apply ice pack for 15-20 minutes every 2-3 hours",
+      "Compress with elastic bandage",
+      "Elevate injured area above heart level",
+      "Avoid activities that cause pain",
+      "Take over-the-counter pain relievers if needed",
+      "Gradually return to normal activities"
+    ],
+    "warnings": [
+      "Do not apply ice directly to skin",
+      "Do not wrap bandage too tightly",
+      "Do not resume activities too quickly",
+      "Seek medical attention for severe injuries"
+    ],
+    "whenToSeekHelp": [
+      "Severe pain or swelling",
+      "Unable to bear weight on injured area",
+      "Signs of broken bone (deformity, severe pain)",
+      "Symptoms worsen or don't improve"
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Messages</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Admin Messages</h1>
+    <div th:if="${messages != null}">
+        <ul>
+            <li th:each="msg : ${messages}" th:text="${msg}"></li>
+        </ul>
+    </div>
+    <div th:if="${messages == null}">
+        <p>No messages to display.</p>
+    </div>
+    <a class="btn btn-primary" th:href="@{/admin}">Back to Admin Dashboard</a>
+</div>
+</body>
+</html>

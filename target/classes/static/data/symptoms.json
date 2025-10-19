@@ -1,0 +1,199 @@
+[
+  {
+    "condition": "Common Cold",
+    "symptoms": ["runny nose", "sore throat", "cough", "sneezing", "congestion", "mild fever", "headache"],
+    "severity": "mild",
+    "recommendations": [
+      "Get plenty of rest",
+      "Stay hydrated by drinking fluids",
+      "Use a humidifier to ease congestion",
+      "Gargle with salt water for sore throat",
+      "Take over-the-counter cold medications if needed",
+      "Avoid close contact with others to prevent spread"
+    ]
+  },
+  {
+    "condition": "Influenza (Flu)",
+    "symptoms": ["fever", "chills", "muscle aches", "fatigue", "headache", "cough", "sore throat", "runny nose"],
+    "severity": "moderate",
+    "recommendations": [
+      "Rest and stay home from work/school",
+      "Stay hydrated",
+      "Take fever-reducing medications",
+      "Use antiviral medications if prescribed by doctor",
+      "Seek medical attention if symptoms worsen",
+      "Get annual flu vaccination for prevention"
+    ]
+  },
+  {
+    "condition": "Migraine",
+    "symptoms": ["severe headache", "nausea", "vomiting", "sensitivity to light", "sensitivity to sound", "visual disturbances"],
+    "severity": "moderate",
+    "recommendations": [
+      "Rest in a dark, quiet room",
+      "Apply cold compress to head",
+      "Take prescribed migraine medications",
+      "Avoid triggers like certain foods, stress, or bright lights",
+      "Consider preventive medications if migraines are frequent",
+      "Seek medical attention for severe or persistent migraines"
+    ]
+  },
+  {
+    "condition": "Gastroenteritis (Stomach Flu)",
+    "symptoms": ["nausea", "vomiting", "diarrhea", "abdominal pain", "fever", "dehydration", "loss of appetite"],
+    "severity": "moderate",
+    "recommendations": [
+      "Stay hydrated with clear fluids",
+      "Follow BRAT diet (bananas, rice, applesauce, toast)",
+      "Avoid dairy and fatty foods",
+      "Rest and avoid strenuous activities",
+      "Use oral rehydration solutions if needed",
+      "Seek medical attention if dehydration is severe"
+    ]
+  },
+  {
+    "condition": "Anxiety Disorder",
+    "symptoms": ["excessive worry", "restlessness", "fatigue", "difficulty concentrating", "irritability", "muscle tension", "sleep problems"],
+    "severity": "moderate",
+    "recommendations": [
+      "Practice deep breathing exercises",
+      "Try meditation or mindfulness techniques",
+      "Maintain regular sleep schedule",
+      "Exercise regularly",
+      "Limit caffeine and alcohol",
+      "Consider therapy or counseling",
+      "Consult healthcare provider for medication options"
+    ]
+  },
+  {
+    "condition": "Depression",
+    "symptoms": ["persistent sadness", "loss of interest", "fatigue", "sleep problems", "appetite changes", "difficulty concentrating", "feelings of worthlessness"],
+    "severity": "moderate",
+    "recommendations": [
+      "Maintain regular routine",
+      "Stay connected with friends and family",
+      "Exercise regularly",
+      "Get adequate sleep",
+      "Consider therapy or counseling",
+      "Consult healthcare provider for treatment options",
+      "Seek immediate help if having suicidal thoughts"
+    ]
+  },
+  {
+    "condition": "Hypertension (High Blood Pressure)",
+    "symptoms": ["headache", "dizziness", "shortness of breath", "chest pain", "fatigue", "vision problems"],
+    "severity": "moderate",
+    "recommendations": [
+      "Monitor blood pressure regularly",
+      "Follow low-sodium diet",
+      "Exercise regularly",
+      "Maintain healthy weight",
+      "Limit alcohol consumption",
+      "Take prescribed medications as directed",
+      "Regular check-ups with healthcare provider"
+    ]
+  },
+  {
+    "condition": "Diabetes",
+    "symptoms": ["excessive thirst", "frequent urination", "fatigue", "blurred vision", "slow healing wounds", "weight loss", "increased hunger"],
+    "severity": "moderate",
+    "recommendations": [
+      "Monitor blood glucose levels regularly",
+      "Follow diabetic diet plan",
+      "Exercise regularly",
+      "Take medications as prescribed",
+      "Regular eye and foot exams",
+      "Maintain healthy weight",
+      "Regular check-ups with healthcare provider"
+    ]
+  },
+  {
+    "condition": "Heart Attack",
+    "symptoms": ["chest pain", "shortness of breath", "nausea", "vomiting", "sweating", "pain in arm", "jaw pain", "back pain"],
+    "severity": "severe",
+    "recommendations": [
+      "Call emergency services immediately (911)",
+      "Chew aspirin if not allergic",
+      "Stay calm and rest",
+      "Do not drive yourself to hospital",
+      "This is a medical emergency requiring immediate attention"
+    ]
+  },
+  {
+    "condition": "Stroke",
+    "symptoms": ["sudden numbness", "confusion", "trouble speaking", "vision problems", "severe headache", "dizziness", "loss of balance"],
+    "severity": "severe",
+    "recommendations": [
+      "Call emergency services immediately (911)",
+      "Note time when symptoms started",
+      "Do not drive yourself to hospital",
+      "Stay calm and rest",
+      "This is a medical emergency requiring immediate attention"
+    ]
+  },
+  {
+    "condition": "Pneumonia",
+    "symptoms": ["cough", "fever", "chills", "shortness of breath", "chest pain", "fatigue", "nausea", "vomiting"],
+    "severity": "moderate",
+    "recommendations": [
+      "Rest and stay hydrated",
+      "Take prescribed antibiotics",
+      "Use humidifier to ease breathing",
+      "Monitor symptoms closely",
+      "Seek medical attention if symptoms worsen",
+      "Get pneumonia vaccination if recommended"
+    ]
+  },
+  {
+    "condition": "Urinary Tract Infection (UTI)",
+    "symptoms": ["frequent urination", "burning sensation", "cloudy urine", "pelvic pain", "fever", "nausea"],
+    "severity": "moderate",
+    "recommendations": [
+      "Drink plenty of water",
+      "Take prescribed antibiotics",
+      "Avoid caffeine and alcohol",
+      "Use heating pad for pain relief",
+      "Urinate frequently",
+      "Seek medical attention if symptoms persist"
+    ]
+  },
+  {
+    "condition": "Allergic Reaction",
+    "symptoms": ["rash", "itching", "swelling", "hives", "difficulty breathing", "nausea", "vomiting"],
+    "severity": "moderate",
+    "recommendations": [
+      "Avoid known allergens",
+      "Take antihistamines if prescribed",
+      "Use epinephrine auto-injector if available",
+      "Seek medical attention for severe reactions",
+      "Carry emergency medications if needed",
+      "Consider allergy testing"
+    ]
+  },
+  {
+    "condition": "Food Poisoning",
+    "symptoms": ["nausea", "vomiting", "diarrhea", "abdominal pain", "fever", "dehydration", "weakness"],
+    "severity": "moderate",
+    "recommendations": [
+      "Stay hydrated with clear fluids",
+      "Avoid solid foods initially",
+      "Gradually reintroduce bland foods",
+      "Rest and avoid strenuous activities",
+      "Use oral rehydration solutions",
+      "Seek medical attention if symptoms are severe"
+    ]
+  },
+  {
+    "condition": "Insomnia",
+    "symptoms": ["difficulty falling asleep", "waking up frequently", "early morning awakening", "fatigue", "irritability", "difficulty concentrating"],
+    "severity": "mild",
+    "recommendations": [
+      "Maintain regular sleep schedule",
+      "Create comfortable sleep environment",
+      "Avoid caffeine and alcohol before bed",
+      "Limit screen time before bed",
+      "Practice relaxation techniques",
+      "Consider sleep study if persistent"
+    ]
+  }
+]
