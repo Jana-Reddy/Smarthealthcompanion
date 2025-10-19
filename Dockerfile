@@ -1,25 +1,13 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim
-
-# Set working directory inside the container
+# Use Maven image to build the app
+FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /app
-
-# Copy Maven wrapper and pom.xml to cache dependencies
-COPY mvnw .
-COPY .mvn .mvn
 COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Download dependencies (this step speeds up builds)
-RUN ./mvnw dependency:go-offline -B || mvn dependency:go-offline -B
-
-# Copy the rest of the project
-COPY . .
-
-# Build the application
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
-
-# Expose port 8080 for the app
+# Use lightweight JRE image to run the app
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Run the application
-CMD ["java", "-jar", "target/SmartHealthApplication.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
